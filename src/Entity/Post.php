@@ -19,7 +19,7 @@ class Post
     private $id;
 
     // @ORM\Column(type: 'datetime')]
-    private $date;
+    private $createdAt;
 
     // @ORM\Column(type: 'string', length: 255)]
     private $title;
@@ -41,14 +41,14 @@ class Post
         return $this->id;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->date;
+        return $this->createdAt;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $this->date = $date;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
