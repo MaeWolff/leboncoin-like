@@ -36,6 +36,11 @@ class Post
     // @ORM\ManyToOne(targetEntity: User::class, inversedBy: 'posts')
     private $author;
 
+
+    // @ORM\ManyToOne(targetEntity: Tag::class, inversedBy: 'posts')
+    // @ORM\JoinColumn(nullable: false)
+    private $tag;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -109,6 +114,18 @@ class Post
     public function setAuthor(?User $author): self
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    public function getTag(): ?Tag
+    {
+        return $this->tag;
+    }
+
+    public function setTag(?Tag $tag): self
+    {
+        $this->tag = $tag;
 
         return $this;
     }
