@@ -43,15 +43,16 @@ class User
     private $votes;
 
 
-    /** 
-    * @ORM\OneToMany(targetEntity: Advertisement::class, mappedBy: 'user')]
-    */
-    private $advertisements;
+    // TODO: uncomment me
+    // /** 
+    // * @ORM\OneToMany(targetEntity: Advertisement::class, mappedBy: 'user')]
+    // */
+    // private $advertisements;
 
-    public function __construct()
-    {
-        $this->advertisements = new ArrayCollection();
-    }
+    // public function __construct()
+    // {
+    //     $this->advertisements = new ArrayCollection();
+    // }
 
     public function getId(): ?int
     {
@@ -108,11 +109,12 @@ class User
         return $this;
     }
 
-    /**
-     * @return Collection|Advertisement[]
-     */
-    public function getAdvertisements(): Collection
-    {
-        return $this->advertisements;
-    }
+// TODO: uncomment me
+//     /**
+//      * @return Collection|Advertisement[]
+//      */
+//     public function getAdvertisements(): Collection
+//     {
+//         return $this->advertisements;
+//     }
 }
