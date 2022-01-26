@@ -47,22 +47,18 @@ class User
     */
     private $votes;
 
-    /** 
-    * @ORM\OneToMany(mappedBy="author", targetEntity=Post::class, orphanRemoval=true)
-    */
+    /**
+     * @ORM\OneToMany(targetEntity=Post::class, mappedBy="post")
+     * @ORM\JoinColumn()
+     */
     private $posts;
-
-    public function __construct()
-    {
-        $this->posts = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getEmail(): ?string
+    public function getEmail(): ?string 
     {
         return $this->email;
     }

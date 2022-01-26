@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PostRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,29 +20,47 @@ class Post
      */
     private $id;
 
-    // @ORM\Column(type="datetime")
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
     private $createdAt;
 
-    // @ORM\Column(type="string", length=255)
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $title;
 
-    // @ORM\Column(type="string", length=5000)
+    /**
+     * @ORM\Column(type="string", length=5000)
+     */
     private $description;
 
-    // @ORM\Column(type="array")
-    // @ORM\JoinColumn(nullable=false)
+
+    /**
+     * @ORM\Column(type="array")
+     *  @ORM\JoinColumn(nullable=false)
+     */
     private $images = [];
 
-    // @ORM\Column(type="float")
+    /**
+     * @ORM\Column(type="float")
+     */
     private $price;
 
-    // @ORM\ManyToOne(targetEntity=User::class, inversedBy="posts")
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="posts")
+     * @ORM\JoinColumn()
+     */
     private $author;
 
 
-    // @ORM\ManyToOne(targetEntity=Tag::class, inversedBy="posts", orphanRemoval=true)
-    // @ORM\JoinColumn(nullable=false)
+    /**
+     * @ORM\ManyToOne(targetEntity=Tag::class, inversedBy="posts")
+     * @ORM\JoinColumn(nullable=false)
+     */
     private $tag;
+
 
     public function getId(): ?int
     {
