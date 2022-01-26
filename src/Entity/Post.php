@@ -18,19 +18,19 @@ class Post
      */
     private $id;
 
-    // @ORM\Column(type: 'datetime')]
+    // @ORM\Column(type: 'datetime')
     private $createdAt;
 
-    // @ORM\Column(type: 'string', length: 255)]
+    // @ORM\Column(type: 'string', length: 255)
     private $title;
 
-    // @ORM\Column(type: 'string', length: 5000)]
+    // @ORM\Column(type: 'string', length: 5000)
     private $description;
 
-    // @ORM\Column(type: 'array', nullable: true)]
+    // @ORM\Column(type: 'array', nullable: true)
     private $images = [];
 
-    // @ORM\Column(type: 'float')]
+    // @ORM\Column(type: 'float')
     private $price;
 
     // @ORM\ManyToOne(targetEntity: User::class, inversedBy: 'posts')

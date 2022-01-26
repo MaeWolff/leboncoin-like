@@ -48,7 +48,7 @@ class User
     private $votes;
 
     /** 
-    * ORM\OneToMany(mappedBy: 'author', targetEntity: Post::class, orphanRemoval: true)]
+    * ORM\OneToMany(mappedBy: 'author', targetEntity: Post::class, orphanRemoval: true)
     */
     private $posts;
 
