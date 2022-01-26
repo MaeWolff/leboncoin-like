@@ -37,6 +37,20 @@ final class TagFactory extends ModelFactory
 
     protected function getDefaults(): array
     {
+        // NOTE: test
+        // $tags = [
+        //     "véhicules",
+        //     "jeux",
+        //     "divers",
+        // ];
+
+
+        // for($i = 0; $i < count($tags); $i++ ) {
+        //     return [
+        //         'name' => $tags[$i],
+        //     ];
+        // }
+
         return [
 
         ];
