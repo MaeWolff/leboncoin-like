@@ -19,11 +19,11 @@ class Tag
      */
     private $id;
 
-    // @ORM\Column(type: 'string', length: 255)
+    // @ORM\Column(type: "string", length=255)
     private $name;
 
 
-    // @ORM\OneToMany(mappedBy: 'tag', targetEntity: Post::class, orphanRemoval: true)
+    // @ORM\OneToMany(mappedBy="tag", targetEntity="Post")
     private $posts;
 
     public function __construct()
@@ -44,7 +44,7 @@ class Tag
     }
 
     /**
-     * @return Collection|Advertisement[]
+     * @return Collection|Post[]
      */
     public function getPosts(): Collection
     {
