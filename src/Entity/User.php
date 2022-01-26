@@ -47,17 +47,15 @@ class User
     */
     private $votes;
 
+    /** 
+    * ORM\OneToMany(mappedBy: 'author', targetEntity: Post::class, orphanRemoval: true)]
+    */
+    private $posts;
 
-    // TODO: uncomment me
-    // /** 
-    // * @ORM\OneToMany(targetEntity: Advertisement::class, mappedBy: 'user')]
-    // */
-    // private $advertisements;
-
-    // public function __construct()
-    // {
-    //     $this->advertisements = new ArrayCollection();
-    // }
+    public function __construct()
+    {
+        $this->posts = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -126,12 +124,11 @@ class User
         return $this;
     }
 
-// TODO: uncomment me
-//     /**
-//      * @return Collection|Advertisement[]
-//      */
-//     public function getAdvertisements(): Collection
-//     {
-//         return $this->advertisements;
-//     }
+    /**
+     * @return Collection|Post[]
+     */
+    public function getPosts(): Collection
+    {
+        return $this->posts;
+    }
 }
