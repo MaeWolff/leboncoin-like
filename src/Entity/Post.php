@@ -27,17 +27,18 @@ class Post
     // @ORM\Column(type="string", length=5000)
     private $description;
 
-    // @ORM\Column(type="array", nullable=true)
+    // @ORM\Column(type="array")
+    // @ORM\JoinColumn(nullable=false)
     private $images = [];
 
     // @ORM\Column(type="float")
     private $price;
 
-    // @ORM\ManyToOne(targetEntity="User", inversedBy="posts")
+    // @ORM\ManyToOne(targetEntity=User::class, inversedBy="posts")
     private $author;
 
 
-    // @ORM\ManyToOne(targetEntity="Tag", inversedBy="posts", orphanRemoval=true)
+    // @ORM\ManyToOne(targetEntity=Tag::class, inversedBy="posts", orphanRemoval=true)
     // @ORM\JoinColumn(nullable=false)
     private $tag;
 

@@ -23,7 +23,7 @@ class Tag
     private $name;
 
 
-    // @ORM\OneToMany(mappedBy="tag", targetEntity="Post")
+    // @ORM\OneToMany(mappedBy="tag", targetEntity=Post::class)
     private $posts;
 
     public function __construct()
