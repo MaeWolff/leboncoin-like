@@ -13,7 +13,7 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        UserFactory::createMany(10);
+        UserFactory::createMany(20);
 
         // NOTE: To create some tags
         TagFactory::createOne(['name' => 'jeux']);
@@ -21,7 +21,16 @@ class AppFixtures extends Fixture
         TagFactory::createOne(['name' => 'loisirs']);
         TagFactory::createOne(['name' => 'divers']);
 
-        PostFactory::createMany(10);
+        PostFactory::createMany(30, function () {
+            $number = rand(1, 4);
+            $images = [];
+
+            for ($i = 0; $i <= $number; $i++) {
+                // TODO: Replace this placeholder by the random images
+                $images[] = "https://loremflickr.com/320/240";
+            }
+            return ["images" => $images];
+        });
 
 
         $manager->flush();

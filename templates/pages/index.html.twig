@@ -2,36 +2,40 @@
 
 {% block title %}
   Hello DefaultController!
+  
 {% endblock %}
 
 {% block body %}
-{# TODO: improve style of this container (small texts..) #}
+  {# TODO: improve style of this container (small texts..) #}
   <div class="container">
     <div class="row row-cols-3 gap-3">
       {% for post in posts %}
         <div class="card" style="width: 18rem;">
-          {# TODO: add post image here #}
-          <img src="..." class="card-img-top" alt="...">
+          <img src="{{ post.images[0] }}" class="card-img-top" alt="image:{{ post.title }}">
 
             <div class="card-body">
-              <h3 class="card-title">
+              <h3 class="card-title fs-5 text-primary">
                 {{ post.title }}
               </h3>
-              <h3 class="card-text">
-                {{ post.price }}
-                €          
+              <h3 class="card-text fs-6">
+                {{ post.price }} €          
               </h3>
 
-              <p class="card-text">
-                {{ post.description }}
-              </p>
+              <div>
+                <p class="card-text">
+                  {{ post.description }}
+                </p>
 
-              <p>
-                Publiée le           
-                {{ post.createdAt|date('d/m/Y') }} par {{ post.author.username }}
-              </p>
+                <p class="lh-1">
+                  Publiée le {{ post.createdAt|date('d/m/Y') }}
+                </p>
 
-              <p class="badge rounded-pill bg-primary">{{ post.tag.name }}</p>
+                <p class="lh-1">par <a href="/" class="text-black-50">{{ post.author.username }}</a></p>
+
+                <span class="badge rounded-pill text-dark border border-primary">
+                  {{ post.tag.name }}
+                </span>
+              </div>
             </div>
           </div>
 

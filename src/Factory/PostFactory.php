@@ -40,9 +40,9 @@ final class PostFactory extends ModelFactory
         return [
             'createdAt' => new \DateTime,
             'title' => self::faker()->word(),
-            'description' => self::faker()->text(200),
+            'description' => self::faker()->text(50),
             // // TODO: add images with faker?
-            // 'images' =>
+            // 'images' => self::faker()->imageUrl(),
             'price' => self::faker()->randomNumber(4),
             'author' => UserFactory::random(),
             'tag' => TagFactory::random(),
