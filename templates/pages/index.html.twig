@@ -2,29 +2,9 @@
 
 {% block title %}
   Hello DefaultController!
-                  
-              
-            
-          
-        
-      
-    
-  
 {% endblock %}
 
 {% block body %}
-  <h1>
-    index
-                                        
-                                
-                          
-                      
-                  
-              
-          
-      
-  </h1>
-
 {# TODO: improve style of this container (small texts..) #}
   <div class="container">
     <div class="row row-cols-3 gap-3">
@@ -51,6 +31,7 @@
                 {{ post.createdAt|date('d/m/Y') }} par {{ post.author.username }}
               </p>
 
+              <p class="badge rounded-pill bg-primary">{{ post.tag.name }} m</p>
             </div>
           </div>
 

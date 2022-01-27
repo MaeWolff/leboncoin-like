@@ -19,11 +19,14 @@ class Tag
      */
     private $id;
 
-    // @ORM\Column(type: "string", length=255)
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $name;
 
-
-    // @ORM\OneToMany(mappedBy="tag", targetEntity=Post::class)
+    /**
+     * @ORM\OneToMany(mappedBy="tag", targetEntity=Post::class)
+     */
     private $posts;
 
     public function __construct()
