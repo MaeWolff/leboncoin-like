@@ -16,7 +16,7 @@ class PostController extends AbstractController
      * @param PostRepository $postRepository
      * @return Response
      */
-    public function postPage(string $id, PostRepository $postRepository) :Response
+    public function getPostPage(string $id, PostRepository $postRepository): Response
     {
         $post = $postRepository->find($id);
         return $this->render('pages/post.html.twig', ["post" => $post]);
