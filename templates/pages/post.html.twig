@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+   {% block title %}
+      {% if(post is null) %}
+         Not found
+      {% else %}
+         {{ post.title }}
+      {% endif %}
+   {% endblock %}
+
+
+   {% block body %}
+      {% if(post is null) %}
+         <p>Désolé, l'annonce n'existe pas</p>
+         <a href="{{ path('home') }}" class="btn btn-primary my-5">Retour à l'accueil</a>
+      {% else %}
+
+       {% include './components/back-button.html.twig' %}
+
+       <section class="py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <div class="col-md-6">
+                    {# TODO: Create a caroussel here to display all images? #}
+                    <img class="card-img-top mb-5 mb-md-0" src="{{ post.images[0] }}" alt="image:{{ post.title }}" />
+                </div>
+                <div class="col-md-6">
+                    <span class="badge rounded-pill text-dark border border-primary">{{ post.tag.name }}</span>
+                    <h1 class="display-5 fw-bolder">{{ post.title }}</h1>
+                
+                    <div class="fs-5 mb-5">
+                        {# TODO: add a function to use locale currency? #}
+                        <span>{{ post.price }} €</span>
+                        <p class="lead">{{ post.description }}</p>
+                    </div>
+
+                     <div class="fs-6 mb-5">
+                     {# TODO: Add link to redirect in profile/user page #}
+                     <p class="mb-0">Publiée le {{ post.createdAt|date('d-m-Y') }} par {{ post.author.username }}</p>
+
+                     {# TODO: Add rating section #}
+                     <div class="mt-5">
+                        <span class="h5"><u>Note vendeur</u></span>
+                     </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+       </section>
+
+       {# TODO: Add questions/answers section #}
+
+       {# NOTE: when the user is not logged in, he/she can't ask questions #}
+       {# <p>Pour pouvoir ajouter une question, vous devez être connecté</p> #}
+       {# <a href="{{ path('login')}}">Se connecter</a> #}
+      {% endif %}
+   {% endblock %}
