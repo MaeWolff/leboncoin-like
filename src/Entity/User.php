@@ -52,6 +52,11 @@ class User
      */
     private $posts;
 
+    public function __construct()
+    {
+        $this->questions = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
