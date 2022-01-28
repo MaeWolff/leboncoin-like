@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+   {% block title %}
+      {% if(user is null) %}
+         Not found
+      {% else %}
+         {{ user.username }}
+      {% endif %}
+   {% endblock %}
+
+
+   {% block body %}
+      {% if(user is null) %}
+         <p>Désolé, l'utilisateur n'existe pas</p>
+         <a href="{{ path('home') }}" class="btn btn-primary my-5">Retour à l'accueil</a>
+      {% else %}
+
+      {# TODO: Add user page (user details) #}
+      <h1>{{ user.username }}</h1>
+
+      {# TODO: display all its posts #}
+      {# TODO: display the user rating #}
+      {% endif %}
+   {% endblock %}
