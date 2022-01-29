@@ -21,15 +21,15 @@
         {% endblock %}
     </head>
     <body>
-        <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary mb-5">
+        <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary mb-5 px-5">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/">
+                <a class="navbar-brand" href="{{ path('home') }}">
                     Logo            
                 </a>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ path('add_post') }}">
                                 Créer une annonce                        
                             </a>
                         </li>
@@ -37,7 +37,7 @@
                     <div class="d-flex">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="{{ path('login') }}">
                                     Se connecter                                
                                 </a>
                             </li>
