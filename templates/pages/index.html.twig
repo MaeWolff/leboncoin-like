@@ -11,7 +11,15 @@
     <div class="row row-cols-3 gap-3">
       {% for post in posts %}
         <div class="card" style="width: 18rem;">
+
+        {# TODO: fix me => implement image upload #}
+          {% if post.images == null %} 
+          <p>Pas d'images disponibles</p>
+
+          {% else %}
           <img src="{{ post.images[0] }}" class="card-img-top" alt="image:{{ post.title }}">
+          {% endif %}
+
 
             <div class="card-body">
               <h3 class="card-title fs-5 text-primary">
@@ -30,7 +38,7 @@
                   Publiée le {{ post.createdAt|date('d/m/Y') }}
                 </p>
 
-                <p class="lh-1">par <a href="{{ path('user', {id: post.author.id}) }}" class="text-black-50">{{ post.author.username }}</a></p>
+                {# <p class="lh-1">par <a href="{{ path('user', {id: post.author.id}) }}" class="text-black-50">{{ post.author.username }}</a></p> #}
 
                 <span class="badge rounded-pill text-dark border border-primary">
                   {{ post.tag.name }}

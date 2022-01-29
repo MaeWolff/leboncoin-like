@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    {% include './components/back-button.html.twig' %}
+
+    <section class="py-5">
+        <div class="container px-4 px-lg-5">
+            <h1>Publier une nouvelle annonce</h1>
+
+            {% if app.user == null %}
+                <div class="alert alert-primary d-flex flex-column mt-4" role="alert">
+                    <p class="lh-1">Pour pouvoir ajouter une annonce sur [MonApp], vous devez d'abord être connecté.<p>
+                    <a href="{{ path('login') }}">Se connecter</a>                
+                </div>
+
+            {% else %}
+                {{ form_start(addPostForm) }}
+                {{ form_widget(addPostForm) }}
+                <button type="submit" class="btn btn-primary">Publier</button>
+                {{ form_end(addPostForm) }}
+            {% endif %}
+        </div>
+    </section>
+
+{% endblock %}
