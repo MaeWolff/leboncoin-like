@@ -7,6 +7,12 @@
 {% block body %}
   {# TODO: improve style of this container (small texts..) #}
   <div class="container">
+      {% for message in app.flashes('success') %}
+      <div class="alert alert-success">
+        {{ message }}
+      </div>
+      {% endfor %}
+
     <div class="row row-cols-3 gap-3">
       {% for post in posts %}
         <div class="card" style="width: 18rem;">

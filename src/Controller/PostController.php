@@ -51,8 +51,24 @@ class PostController extends AbstractController
             return $this->redirectToRoute("home");
         }
 
+        $this->addFlash('success', 'Votre annonce a bien été publiée !');
+
         return $this->render('pages/new-post.html.twig', [
             "addPostForm" => $form->createView(),
         ]);
+    }
+    
+    /**
+     * @Route("/delete/{id}", name="delete_post")
+     */
+    public function deletePost(EntityManagerInterface $entityManager, PostRepository $postRepository, Post $post): Response
+    {
+        $post = $postRepository->find($post->getId());
+        $entityManager->remove($post);
+        $entityManager->flush();
+
+        $this->addFlash('success', 'Votre annonce a bien été supprimée !');
+
+        return $this->redirectToRoute('home');
     }
 }

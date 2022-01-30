@@ -5,6 +5,12 @@
 
 {% block body %}
     <section class="py-5">
+    {% for message in app.flashes('success') %}
+      <div class="alert alert-success">
+        {{ message }}
+      </div>
+      {% endfor %}
+
         <div class="container px-4 px-lg-5 my-5">
             <form method="post">
                 {% if error %}
