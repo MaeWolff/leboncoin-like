@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% set isAuthor =  app.user is same as(post.author) %}
+
    {% block title %}
       {% if(post is null) %}
          Not found
@@ -22,7 +24,12 @@
             <div class="row gx-4 gx-lg-5 align-items-center">
                 <div class="col-md-6">
                     {# TODO: Create a caroussel here to display all images? #}
+                    {# TODO: Remove this check when the upload of images is merged. #}
+                    {% if post.images == null %}
+                    <p>Pas d'images disponibles</p>
+                    {% else %}
                     <img class="card-img-top mb-5 mb-md-0" src="{{ post.images[0] }}" alt="image:{{ post.title }}" />
+                    {% endif %}
                 </div>
                 <div class="col-md-6">
                     <span class="badge rounded-pill text-dark border border-primary">{{ post.tag.name }}</span>
@@ -42,6 +49,16 @@
                      <div class="mt-5">
                         <span class="h5"><u>Note vendeur</u></span>
                      </div>
+
+                     {% if isAuthor %}
+                        <div class="mt-5">
+                           <a class="text-muted" href="{{ path('delete_post', {'id': post.id}) }}">
+                           <i class="bi-trash"></i>
+                           Supprimer l'annonce
+                           </a>
+                        </div>
+
+                     {% endif %}
                   </div>
                 </div>
             </div>
