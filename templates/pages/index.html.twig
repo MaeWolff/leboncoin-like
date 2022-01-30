@@ -38,7 +38,7 @@
                   Publiée le {{ post.createdAt|date('d/m/Y') }}
                 </p>
 
-                {# <p class="lh-1">par <a href="{{ path('user', {id: post.author.id}) }}" class="text-black-50">{{ post.author.username }}</a></p> #}
+                <p class="lh-1">par <a href="{{ path('user', {id: post.author.id}) }}" class="text-black-50">{{ post.author.username }}</a></p>
 
                 <span class="badge rounded-pill text-dark border border-primary">
                   {{ post.tag.name }}

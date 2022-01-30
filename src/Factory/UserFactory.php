@@ -42,7 +42,6 @@ final class UserFactory extends ModelFactory
             'email' => self::faker()->email(),
             'username' => self::faker()->userName(),
             'password' => password_hash('password', PASSWORD_BCRYPT),
-            'isAdmin' => self::faker()->boolean(),
             'votes' => 0,
         ];
     }
