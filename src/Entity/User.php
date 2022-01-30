@@ -7,13 +7,14 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
  */
-class User implements UserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Id
@@ -37,12 +38,6 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
-
-    // TODO: remove me
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $isAdmin;
 
     /**
      * @ORM\Column(type="integer")
@@ -104,20 +99,6 @@ class User implements UserInterface
 
         return $this;
     }
-
-
-    public function getIsAdmin(): ?bool
-    {
-        return $this->isAdmin;
-    }
-
-    public function setIsAdmin(bool $isAdmin): self
-    {
-        $this->isAdmin = $isAdmin;
-
-        return $this;
-    }
-
 
     public function getVotes(): ?int
     {
