@@ -39,11 +39,10 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $hash = $passwordHasher->hashPassword($user, $user->getPassword());
-            $user->setPassword($hash);
 
+            $user->setPassword($hash);
             // NOTE: initialize user votes to 0.
             $user->setVotes(0);
-
 
             $entityManager->persist($user);
             $entityManager->flush();
