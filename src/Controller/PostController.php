@@ -51,6 +51,8 @@ class PostController extends AbstractController
             return $this->redirectToRoute("home");
         }
 
+        $this->addFlash('success', 'Votre annonce a bien été publiée !');
+
         return $this->render('pages/new-post.html.twig', [
             "addPostForm" => $form->createView(),
         ]);

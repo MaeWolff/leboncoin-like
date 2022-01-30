@@ -49,6 +49,8 @@ class UserController extends AbstractController
             return $this->redirectToRoute("login");
         }
 
+        $this->addFlash('success', 'Votre compte a bien été crée. Vous pouvez maintenant vous connecter !');
+
         return $this->render('pages/register.html.twig', [
             'registrationForm' => $form->createView()
         ]);

@@ -30,5 +30,6 @@ class SecurityController extends AbstractController
      */
     public function logout(): void
     {
+        $this->addFlash('success', 'À bientôt !');
     }
 }
