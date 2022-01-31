@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+   {% block title %}
+      {% if(app.user is null) %}
+         Not found
+      {% else %}
+         {{ app.user.username }}
+      {% endif %}
+   {% endblock %}
+
+
+   {% block body %}
+      {% if(app.user is null) %}
+         <p>Désolé, vous devez être connecté pour avoir accès à cette page.</p>
+         <a href="{{ path('app_home') }}" class="btn btn-primary my-5">Retour à l'accueil</a>
+      {% else %}
+
+        <div class="container px-4 px-lg-5 my-5">
+            <h1 class="mb-3">Votre profil</h1>
+            {{ form_start(editUserForm) }}
+            {{ form_row(editUserForm.email, {'attr': { 'value': app.user.email }}) }}
+            {{ form_row(editUserForm.password, {'attr': { 'value': app.user.password }}) }}
+            {{ form_row(editUserForm.username, {'attr': { 'value': app.user.username }}) }}
+            {# TODO: fix function to update user #}
+            {# <button type="submit" class="btn btn-primary mt-3">Mettre à jour</button> #}
+            {{ form_end(editUserForm)}}
+        </div>
+
+        <div class="container px-4 px-lg-5 my-5">
+            <h4>Mes annonces publiées</h4> 
+            <div class="list-group mt-3 w-75">
+                {% if app.user.posts|length == 0 %}
+                    <p>Vous avez 0 annonce publiée.</p>
+                {% else %}
+                    {% for post in app.user.posts %}
+                        <a href={{ path('app_post', { id: post.id}) }} class="list-group-item list-group-item-action" aria-current="true">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb1">{{ post.title }}</h6>
+                                <p class="lh-1">{{ post.createdAt|date('d-m-Y') }}</p>
+                            </div>
+                            <p class="lh-1">{{ post.description }}</p>
+                        </a>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+      {% endif %}
+
+    <div class="container px-4 px-lg-5 my-5">
+      <a href={{ path('app_logout') }} class="link-danger">Se deconnecter</a>
+    </div>
+   {% endblock %}

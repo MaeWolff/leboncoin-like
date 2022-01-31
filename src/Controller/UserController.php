@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Repository\UserRepository;
 use App\Entity\User;
-
+use App\Form\EditUserFormType;
 use App\Form\UserRegisterFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,6 +26,35 @@ class UserController extends AbstractController
         $user = $userRepository->find($id);
         return $this->render('pages/user.html.twig', ["user" => $user]);
     }
+
+    /**
+     * @Route("/profile", name="app_profile")
+     * @return Response
+     */
+    public function profile(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $loggedUser = $this->getUser();
+
+
+        $form = $this->createForm(EditUserFormType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $form->getData();
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $this->addFlash("success", "Profil mise à jour");
+
+            return $this->redirectToRoute("profile");
+        }
+
+        return $this->render('pages/profile.html.twig', [
+            'editUserForm' => $form->createView()
+        ]);
+    }
+
 
     /**
      * @Route("/register}", name="app_register")
