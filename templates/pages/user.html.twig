@@ -12,7 +12,7 @@
    {% block body %}
       {% if(user is null) %}
          <p>Désolé, l'utilisateur n'existe pas</p>
-         <a href="{{ path('home') }}" class="btn btn-primary my-5">Retour à l'accueil</a>
+         <a href="{{ path('app_home') }}" class="btn btn-primary my-5">Retour à l'accueil</a>
       {% else %}
 
       {# TODO: Add user page (user details) #}

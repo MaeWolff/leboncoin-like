@@ -16,7 +16,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/user/{id}", name="user")
+     * @Route("/user/{id}", name="app_user")
      * @param string $id
      * @param UserRepository $postRepository
      * @return Response
@@ -28,7 +28,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/register}", name="register")
+     * @Route("/register}", name="app_register")
      * @return Response
      */
     public function register(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
@@ -46,7 +46,7 @@ class UserController extends AbstractController
 
             $entityManager->persist($user);
             $entityManager->flush();
-            return $this->redirectToRoute("login");
+            return $this->redirectToRoute("app_login");
         }
 
         $this->addFlash('success', 'Votre compte a bien été crée. Vous pouvez maintenant vous connecter !');

@@ -14,7 +14,7 @@
    {% block body %}
       {% if(post is null) %}
          <p>Désolé, l'annonce n'existe pas</p>
-         <a href="{{ path('home') }}" class="btn btn-primary my-5">Retour à l'accueil</a>
+         <a href="{{ path('app_home') }}" class="btn btn-primary my-5">Retour à l'accueil</a>
       {% else %}
 
        {% include './components/back-button.html.twig' %}
@@ -52,7 +52,7 @@
 
                      {% if isAuthor %}
                         <div class="mt-5">
-                           <a class="text-muted" href="{{ path('delete_post', {'id': post.id}) }}">
+                           <a class="text-muted" href="{{ path('app_delete_post', {'id': post.id}) }}">
                            <i class="bi-trash"></i>
                            Supprimer l'annonce
                            </a>
@@ -69,6 +69,6 @@
 
        {# NOTE: when the user is not logged in, he/she can't ask questions #}
        {# <p>Pour pouvoir ajouter une question, vous devez être connecté</p> #}
-       {# <a href="{{ path('login')}}">Se connecter</a> #}
+       {# <a href="{{ app_login')}}">Se connecter</a> #}
       {% endif %}
    {% endblock %}

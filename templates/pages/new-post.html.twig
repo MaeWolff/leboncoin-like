@@ -12,7 +12,7 @@
             {% if app.user == null %}
                 <div class="alert alert-primary d-flex flex-column mt-4" role="alert">
                     <p class="lh-1">Pour pouvoir ajouter une annonce sur [MonApp], vous devez d'abord être connecté.<p>
-                    <a href="{{ path('login') }}">Se connecter</a>                
+                    <a href="{{ 'app_login') }}">Se connecter</a>                
                 </div>
 
             {% else %}
