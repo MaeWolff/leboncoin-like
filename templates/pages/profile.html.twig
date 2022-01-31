@@ -16,7 +16,13 @@
       {% else %}
 
         <div class="container px-4 px-lg-5 my-5">
-            <h1 class="mb-3">Votre profil</h1>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        
+            <h1 class="mb-3 mt-3">Votre profil</h1>
             {{ form_start(editUserForm) }}
             {{ form_row(editUserForm.email, {'attr': { 'value': app.user.email }}) }}
             {{ form_row(editUserForm.password, {'attr': { 'value': app.user.password }}) }}
