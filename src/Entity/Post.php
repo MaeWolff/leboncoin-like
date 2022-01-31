@@ -62,7 +62,7 @@ class Post
     private $tag;
 
     /**
-     * @ORM\OneToMany(targetEntity=Question::class, mappedBy="postz")
+     * @ORM\OneToMany(targetEntity=Question::class, mappedBy="post")
      */
     private $questions;
 
