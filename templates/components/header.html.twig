@@ -1,20 +1,20 @@
 {%  block div %}
 <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white px-5 mb-5">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{{ path('home') }}">
+        <a class="navbar-brand" href="{{ path('app_home') }}">
             AnnoncesAGogo            
         </a>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('add_post') }}">Créer une annonce</a>
+                    <a class="nav-link" href="{{ path('app_add_post') }}">Créer une annonce</a>
                 </li>
             </ul>
             <div class="d-flex">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         {% if app.user == null %}
-                            <a class="nav-link" href="{{ path('login') }}">Se connecter</a>
+                            <a class="nav-link" href="{{ path('app_login') }}">Se connecter</a>
                             {% else %}
                                 {# TODO: Add profile page #}
                                <a class="nav-link" href="/">

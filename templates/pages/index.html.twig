@@ -43,14 +43,14 @@
                   Publiée le {{ post.createdAt|date('d/m/Y') }}
                 </p>
 
-                <p class="lh-1">par <a href="{{ path('user', {id: post.author.id}) }}" class="text-black-50">{{ post.author.username }}</a></p>
+                <p class="lh-1">par <a href="{{ path('app_user', {id: post.author.id}) }}" class="text-black-50">{{ post.author.username }}</a></p>
 
                 <span class="badge rounded-pill text-dark border border-primary">
                   {{ post.tag.name }}
                 </span>
               </div>
 
-               <a class="btn btn-warning mt-5" href="{{ path('post', {id: post.id}) }}">Voir l'annonce</a>
+               <a class="btn btn-warning mt-5" href="{{ path('app_post', {id: post.id}) }}">Voir l'annonce</a>
             </div>
           </div>
 

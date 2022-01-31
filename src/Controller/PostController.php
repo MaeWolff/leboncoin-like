@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PostController extends AbstractController
 {
     /**
-     * @Route("/post/{id}", name="post")
+     * @Route("/post/{id}", name="app_post")
      * @param string $id
      * @param PostRepository $postRepository
      * @return Response
@@ -29,7 +29,7 @@ class PostController extends AbstractController
 
 
     /**
-     * @Route("new-post", name="add_post", methods={"GET","POST"})
+     * @Route("new-post", name="app_add_post", methods={"GET","POST"})
      * @param Request $request
      * @return Response
      */
@@ -48,7 +48,7 @@ class PostController extends AbstractController
 
             $entityManager->persist($post);
             $entityManager->flush();
-            return $this->redirectToRoute("home");
+            return $this->redirectToRoute("app_home");
         }
 
         $this->addFlash('success', 'Votre annonce a bien été publiée !');
@@ -59,7 +59,7 @@ class PostController extends AbstractController
     }
     
     /**
-     * @Route("/delete/{id}", name="delete_post")
+     * @Route("/delete/{id}", name="app_delete_post")
      */
     public function deletePost(EntityManagerInterface $entityManager, PostRepository $postRepository, Post $post): Response
     {
@@ -69,6 +69,6 @@ class PostController extends AbstractController
 
         $this->addFlash('success', 'Votre annonce a bien été supprimée !');
 
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('app_home');
     }
 }
