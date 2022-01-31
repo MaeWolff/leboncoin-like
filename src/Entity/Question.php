@@ -26,12 +26,6 @@ class Question
     private $author;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Post::class)
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $post;
-
-    /**
      * @ORM\Column(type="text")
      */
     private $content;
@@ -40,6 +34,11 @@ class Question
      * @ORM\OneToMany(targetEntity=Answer::class, mappedBy="question", orphanRemoval=true)
      */
     private $answers;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Post::class, inversedBy="questions")
+     */
+    private $post;
 
     public function __construct()
     {
@@ -59,18 +58,6 @@ class Question
     public function setAuthor(?User $author): self
     {
         $this->author = $author;
-
-        return $this;
-    }
-
-    public function getPost(): ?Post
-    {
-        return $this->post;
-    }
-
-    public function setPost(?Post $post): self
-    {
-        $this->post = $post;
 
         return $this;
     }
@@ -113,6 +100,18 @@ class Question
                 $answer->setQuestion(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPost(): ?Post
+    {
+        return $this->post;
+    }
+
+    public function setPost(?Post $post): self
+    {
+        $this->post = $post;
 
         return $this;
     }
