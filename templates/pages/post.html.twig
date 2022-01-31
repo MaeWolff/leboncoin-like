@@ -70,5 +70,26 @@
        {# NOTE: when the user is not logged in, he/she can't ask questions #}
        {# <p>Pour pouvoir ajouter une question, vous devez être connecté</p> #}
        {# <a href="{{ app_login')}}">Se connecter</a> #}
+
+      <div class="container px-4 px-lg-5 my-5">
+            <div class="col-md-8">
+                     <h5>Questions ({{ post.questions|length }})</h5>
+
+                  {% for question in post.questions %}
+                  <div class="card p-3">
+                     <div class="d-flex justify-content-between align-items-center">
+                        <div class="user d-flex flex-row align-items-center">
+                           <span>
+                              <small class="font-weight-bold text-primary">{{ question.author.username }}</small>
+                              <small class="font-weight-bold">{{ question.content }}</small>
+                           </span> 
+                        </div> 
+                        {# TODO: fix date. #}
+                        <small class="text-nowrap">2 days ago</small>
+                     </div>
+                  </div>
+                  {% endfor %}
+            </div>
+      </div>
       {% endif %}
    {% endblock %}
