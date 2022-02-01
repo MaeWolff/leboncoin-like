@@ -13,6 +13,17 @@
       </div>
       {% endfor %}
 
+      <div class="input-group rounded w-50 mb-5">
+      {# TODO: Add function to search posts #}
+        <form action="{{ path('app_search_post') }}" method="get">
+          <input type="search" class="form-control rounded" placeholder="recherche" aria-label="search" aria-describedby="search" />
+          <span class="input-group-text border-0" id="search">
+            <i class="bi bi-search"></i>
+          </span>
+        </form>
+      </div>
+
+
     <div class="row row-cols-3 gap-3">
       {% for post in posts %}
         <div class="card" style="width: 18rem;">
