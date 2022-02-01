@@ -5,26 +5,46 @@ namespace App\Controller;
 use App\Repository\PostRepository;
 
 use App\Entity\Post;
+use App\Entity\Question;
 use App\Form\CreatePostFormType;
+use App\Form\AddQuestionFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class PostController extends AbstractController
 {
     /**
-     * @Route("/post/{id}", name="app_post")
+     * @Route("/post/{id}", name="app_post", methods={"GET","POST"})
      * @param string $id
      * @param PostRepository $postRepository
      * @return Response
      */
-    public function getPostPage(string $id, PostRepository $postRepository): Response
+    public function getPostPage(string $id, Request $request, PostRepository $postRepository, EntityManagerInterface $entityManager): Response
     {
+        $question = new Question();
         $post = $postRepository->find($id);
-        return $this->render('pages/post.html.twig', ["post" => $post]);
+
+        $form = $this->createForm(AddQuestionFormType::class, $question);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $question = $form->getData();
+            $question->setAuthor($this->getUser());
+
+            $post->addQuestion($question);
+
+            $entityManager->persist($question);
+            $entityManager->flush();
+        }
+
+
+        return $this->render('pages/post.html.twig', [
+            "addQuestionForm" => $form->createView(),
+            "post" => $post
+        ]);
     }
 
 
@@ -57,7 +77,7 @@ class PostController extends AbstractController
             "addPostForm" => $form->createView(),
         ]);
     }
-    
+
     /**
      * @Route("/delete/{id}", name="app_delete_post")
      */
