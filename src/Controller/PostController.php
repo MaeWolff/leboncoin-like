@@ -41,7 +41,7 @@ class PostController extends AbstractController
         }
 
 
-        return $this->render('pages/post.html.twig', [
+        return $this->render('pages/post/index.html.twig', [
             "addQuestionForm" => $form->createView(),
             "post" => $post
         ]);
@@ -49,7 +49,7 @@ class PostController extends AbstractController
 
 
     /**
-     * @Route("new-post", name="app_add_post", methods={"GET","POST"})
+     * @Route("add-post", name="app_add_post", methods={"GET","POST"})
      * @param Request $request
      * @return Response
      */
@@ -73,8 +73,32 @@ class PostController extends AbstractController
 
         $this->addFlash('success', 'Votre annonce a bien été publiée !');
 
-        return $this->render('pages/new-post.html.twig', [
+        return $this->render('pages/post/add.html.twig', [
             "addPostForm" => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/post/{id}/edit", name="app_edit_post")
+     */
+    public function editPost(Request $request, EntityManagerInterface $entityManager, Post $post): Response
+    {
+        $form = $this->createForm(CreatePostFormType::class, $post);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $post = $form->getData();
+
+            $entityManager->persist($post);
+            $entityManager->flush();
+
+            $this->addFlash("success", "Annonce mise à jour.");
+
+            return $this->redirectToRoute("app_post", ['id' => $post->getId()]);
+        }
+
+        return $this->render('pages/post/edit.html.twig', [
+            'editPostForm' => $form->createView()
         ]);
     }
 

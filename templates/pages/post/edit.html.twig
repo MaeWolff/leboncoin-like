@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    {% include './components/back-button.html.twig' %}
+
+    <section class="py-5">
+        <div class="container px-4 px-lg-5">
+            <h1>Modifier votre annonce</h1>
+
+                {{ form_start(editPostForm) }}
+                {{ form_widget(editPostForm) }}
+                <button type="submit" class="btn btn-primary">Publier</button>
+                {{ form_end(editPostForm) }}
+            
+        </div>
+    </section>
+
+{% endblock %}

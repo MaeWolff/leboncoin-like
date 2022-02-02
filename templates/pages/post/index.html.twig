@@ -21,6 +21,12 @@
 
        <section class="py-5">
         <div class="container px-4 px-lg-5">
+         {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+               {{ message }}
+            </div>
+         {% endfor %}
+
             <div class="row gx-4 gx-lg-5 align-items-center">
                 <div class="col-md-6">
                     {# TODO: Create a caroussel here to display all images? #}
@@ -62,9 +68,13 @@
 
                      {% if isAuthor %}
                         <div class="mt-5">
-                           <a class="text-muted" href="{{ path('app_delete_post', {'id': post.id}) }}">
+                           <a class="text-muted me-5" href="{{ path('app_delete_post', {'id': post.id}) }}">
                            <i class="bi-trash"></i>
                            Supprimer l'annonce
+                           </a>
+                           <a class="text-muted" href="{{ path('app_edit_post', {'id': post.id}) }}">
+                           <i class="bi-pencil"></i>
+                           Modifier l'annonce
                            </a>
                         </div>
 
