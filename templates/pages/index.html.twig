@@ -12,6 +12,11 @@
         {{ message }}
       </div>
       {% endfor %}
+      {% for message in app.flashes('info') %}
+      <div class="alert alert-info">
+        {{ message }}
+      </div>
+      {% endfor %}
 
       <div class="input-group rounded w-50 mb-5">
       {# TODO: Add function to search posts #}

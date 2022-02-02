@@ -48,6 +48,16 @@
                      {# TODO: Add rating section #}
                      <div class="mt-5">
                         <span class="h5"><u>Note vendeur</u></span>
+                        <p>{{ post.author.votes }}</p>
+
+                        {% if((app.user and (post.author != app.user))) %}
+                        <form action="{{ path('app_user_vote', {'id': post.author.id }) }}" method="post">
+                           <div class="d-flex align-items-center">
+                              <button class="btn btn-outline-dark me-1" name="vote" value="up">👍</button>
+                              <button class="btn btn-outline-dark" name="vote" value="down">👎</button>
+                           </div>
+                        </form>
+                        {% endif %}
                      </div>
 
                      {% if isAuthor %}

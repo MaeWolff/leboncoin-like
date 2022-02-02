@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Entity\Post;
+
 use App\Repository\UserRepository;
 use App\Form\EditUserFormType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -30,9 +33,6 @@ class UserController extends AbstractController
      */
     public function profile(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $loggedUser = $this->getUser();
-
-
         $form = $this->createForm(EditUserFormType::class);
         $form->handleRequest($request);
 
@@ -42,13 +42,35 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->addFlash("success", "Profil mise à jour");
+            $this->addFlash("success", "Profil mise à jour.");
 
-            return $this->redirectToRoute("profile");
+            return $this->redirectToRoute("app_profile");
         }
 
         return $this->render('pages/profile.html.twig', [
             'editUserForm' => $form->createView()
         ]);
+    }
+
+
+    /**
+     * @Route("/user/vote/{id}", name="app_user_vote")
+     * @return Response
+     */
+    public function rating(User $user, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $vote = $request->request->get('vote');
+
+        if ($vote === "up") {
+            $user->upVotes();
+        } else {
+            $user->downVotes();
+        }
+
+        $this->addFlash("info", "Merci d'avoir évaluer un utilisateur.");
+        $entityManager->flush();
+
+        // TODO: fix redirection to current post.
+        return $this->redirectToRoute("app_home");
     }
 }

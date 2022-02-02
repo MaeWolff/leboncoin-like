@@ -112,6 +112,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function upVotes(): self
+    {
+        $this->votes++;
+        return $this;
+    }
+
+    public function downVotes(): self
+    {
+        return $this->votes--;
+        return $this;
+    }
+
     /**
      * @return Collection|Post[]
      */
