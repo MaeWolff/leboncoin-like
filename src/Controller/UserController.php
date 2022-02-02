@@ -54,7 +54,7 @@ class UserController extends AbstractController
 
 
     /**
-     * @Route("/user/vote/{id}", name="app_user_vote")
+     * @Route("/user/{id}/vote", name="app_user_vote")
      * @return Response
      */
     public function rating(User $user, Request $request, EntityManagerInterface $entityManager): Response
