@@ -75,11 +75,6 @@
         </div>
        </section>
 
-       {# TODO: Add questions/answers section #}
-
-       {# NOTE: when the user is not logged in, he/she can't ask questions #}
-       {# <p>Pour pouvoir ajouter une question, vous devez être connecté</p> #}
-       {# <a href="{{ app_login')}}">Se connecter</a> #}
 
       <div class="container px-4 px-lg-5 mt-4">
             <div class="col-md-8">
@@ -109,10 +104,18 @@
                   </div>
                   {% endfor %}
 
-               {{ form_start(addQuestionForm) }}
-               {{ form_row(addQuestionForm.content, { 'attr': { "value": '' } }) }}
-               <button type="submit" class="btn btn-primary">Poster</button>
-               {{ form_end(addQuestionForm)}}
+
+               {% if app.user == null %}
+                  <div class="alert alert-secondary">
+                     <p class="ln-1">Pour pouvoir poser une question, vous devez être connecté</p> 
+                     <a href="{{ path('app_login')}}" class="ln-1">Se connecter</a>
+                  </div>
+               {% else %}
+                  {{ form_start(addQuestionForm) }}
+                  {{ form_row(addQuestionForm.content, { 'attr': { "value": '' } }) }}
+                  <button type="submit" class="btn btn-primary">Poster</button>
+                  {{ form_end(addQuestionForm)}}
+               {% endif %}        
             </div>
       </div>
       {% endif %}
