@@ -16,7 +16,7 @@
                         {% if app.user == null %}
                             <a class="nav-link" href="{{ path('app_login') }}">Se connecter</a>
                             {% else %}
-                               <a class="nav-link" href="{{ path('app_profile') }}">
+                               <a class="nav-link" href="{{ path('app_profile', { 'id': app.user.id }) }}">
                                     {{ app.user.username }}
                                     <i class="bi-person-circle"></i>                              
                                 </a>

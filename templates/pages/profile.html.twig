@@ -24,11 +24,11 @@
         
             <h1 class="mb-3 mt-3">Votre profil</h1>
             {{ form_start(editUserForm) }}
-            {{ form_row(editUserForm.email, {'attr': { 'value': app.user.email }}) }}
-            {{ form_row(editUserForm.password, {'attr': { 'value': app.user.password }}) }}
-            {{ form_row(editUserForm.username, {'attr': { 'value': app.user.username }}) }}
+            {{ form_row(editUserForm.email) }}
+            {{ form_row(editUserForm.password) }}
+            {{ form_row(editUserForm.username) }}
             {# TODO: fix function to update user #}
-            {# <button type="submit" class="btn btn-primary mt-3">Mettre à jour</button> #}
+            <button type="submit" class="btn btn-primary mt-3">Mettre à jour</button>
             {{ form_end(editUserForm)}}
         </div>
 

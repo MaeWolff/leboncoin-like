@@ -27,13 +27,15 @@ class UserController extends AbstractController
         return $this->render('pages/user.html.twig', ["user" => $user]);
     }
 
+
+    // TODO: rename this path to /user/{id}/edit?
     /**
-     * @Route("/profile", name="app_profile")
+     * @Route("/profile/{id}", name="app_profile")
      * @return Response
      */
-    public function profile(Request $request, EntityManagerInterface $entityManager): Response
+    public function profile(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(EditUserFormType::class);
+        $form = $this->createForm(EditUserFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -44,7 +46,7 @@ class UserController extends AbstractController
 
             $this->addFlash("success", "Profil mise à jour.");
 
-            return $this->redirectToRoute("app_profile");
+            return $this->redirectToRoute("app_profile", ['id' => $user->getId()]);
         }
 
         return $this->render('pages/profile.html.twig', [
